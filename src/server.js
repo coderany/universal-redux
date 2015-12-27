@@ -7,7 +7,7 @@ import compression from 'compression';
 import path from 'path';
 import PrettyError from 'pretty-error';
 import { each } from 'lodash';
-import { RoutingContext, match } from '../react-router/index';
+import { RoutingContext, match } from './react-router/index';
 import { Provider } from 'react-redux';
 import WebpackIsomorphicTools from 'webpack-isomorphic-tools';
 

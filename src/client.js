@@ -8,7 +8,7 @@ import ReactDOM from 'react-dom';
 import createHistory from 'history/lib/createBrowserHistory';
 import createStore from './redux/create';
 import { Provider } from 'react-redux';
-import { Router } from '../react-router/index';
+import { Router } from './react-router/index';
 import { syncReduxAndRouter } from 'redux-simple-router';
 import useScroll from 'scroll-behavior/lib/useStandardScroll';
 
