@@ -3,7 +3,7 @@
   "description": "A universal redux renderer (ES6, Webpack, Express)",
   "author": "Buck DeFore <bdefore@gmail.com> (http://github.com/bdefore)",
   "license": "MIT",
-  "version": "2.0.0-beta11",
+  "version": "2.0.0-beta18",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bdefore/universal-redux.git"
@@ -27,13 +27,12 @@
   "scripts": {
     "compile": "babel --presets es2015,stage-0,react --plugins transform-runtime src/ --out-dir lib/",
     "dev": "./bin/local-dev.sh",
-    "prepublish": "npm run compile",
-    "lint": "eslint -c .eslintrc src",
-    "test": "karma start"
+    "lint": "eslint -c .eslintrc src bin config",
+    "test": "karma start",
+    "prepublish": "npm run compile"
   },
   "dependencies": {
     "autoprefixer-loader": "^3.1.0",
-    "babel": "~6.3.13",
     "babel-cli": "6.3.17",
     "babel-core": "~6.3.21",
     "babel-eslint": "^5.0.0-beta3",
@@ -46,8 +45,6 @@
     "babel-preset-react": "^6.3.13",
     "babel-preset-stage-0": "^6.3.13",
     "babel-runtime": "~6.3.19",
-    "bootstrap-sass": "^3.3.5",
-    "bootstrap-sass-loader": "^1.0.9",
     "clean-webpack-plugin": "^0.1.4",
     "compression": "^1.6.0",
     "css-loader": "^0.23.0",
@@ -59,8 +56,6 @@
     "express": "^4.13.3",
     "extract-text-webpack-plugin": "^0.9.1",
     "file-loader": "^0.8.5",
-    "font-awesome": "^4.4.0",
-    "font-awesome-webpack": "0.0.4",
     "history": "^1.17.0",
     "json-loader": "^0.5.4",
     "less": "^2.5.3",
@@ -70,7 +65,7 @@
     "pretty-error": "^2.0.0",
     "query-string": "^3.0.0",
     "react": "^0.14.3",
-    "react-addons-test-utils": "0.14.3",
+    "react-addons-test-utils": "^0.14.3",
     "react-document-meta": "^2.0.0",
     "react-dom": "^0.14.3",
     "react-redux": "^4.0.0",
