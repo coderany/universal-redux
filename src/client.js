@@ -8,7 +8,7 @@ import ReactDOM from 'react-dom';
 import createStore from './redux/create';
 import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
-import Router from './router'
+import RouterWrapper from './router'
 
 // TODO: get useScroll working again with react-router 2
 // import useScroll from 'scroll-behavior/lib/useStandardScroll';
@@ -38,7 +38,7 @@ const store = createStore(middleware, browserHistory, reducers, window.__data);
 //   return React.createElement(Component, propz);
 // }
 
-const component = <Router />;
+const component = <RouterWrapper />;
 
 ReactDOM.render(
   <Provider store={store} key="provider">
