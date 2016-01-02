@@ -69,6 +69,7 @@
     "react-dom": "^0.14.3",
     "react-redux": "^4.0.0",
     "react-router": "https://github.com/coderany/react-router.git",
+    "markdown-with-front-matter-loader": "coderany/markdown-with-front-matter-loader",
     "react-transform-catch-errors": "^1.0.0",
     "react-transform-hmr": "^1.0.1",
     "redbox-react": "^1.1.1",
