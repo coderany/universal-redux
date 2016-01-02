@@ -8,7 +8,6 @@ import ReactDOM from 'react-dom';
 import createStore from './redux/create';
 import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
-import RouterWrapper from './routerWrapper'
 
 // TODO: get useScroll working again with react-router 2
 // import useScroll from 'scroll-behavior/lib/useStandardScroll';
@@ -16,6 +15,7 @@ import RouterWrapper from './routerWrapper'
 
 // dependencies of external source. these resolve via webpack aliases
 // as assigned in merge-configs.js
+import getRoutes from 'routes';
 import reducers from 'reducers';
 import customMiddleware from 'middleware';
 
@@ -38,15 +38,36 @@ const store = createStore(middleware, browserHistory, reducers, window.__data);
 //   return React.createElement(Component, propz);
 // }
 
+const component = (
+  <Router history={browserHistory}>
+    {getRoutes()}
+  </Router>
+);
 
-const DevTools = require('./containers/DevTools/DevTools').default;
 ReactDOM.render(
   <Provider store={store} key="provider">
-    <div>
-      <RouterWrapper />
-      <DevTools />
-    </div>
+    {component}
   </Provider>,
   dest
 );
 
+if (process.env.NODE_ENV !== 'production') {
+  window.React = React; // enable debugger
+
+  if (!dest || !dest.firstChild || !dest.firstChild.attributes || !dest.firstChild.attributes['data-react-checksum']) {
+    console.error('Server-side React render was discarded. Make sure that your initial render does not contain any client-side code.');
+  }
+}
+
+if (__DEVTOOLS__ && !window.devToolsExtension) {
+  const DevTools = require('./containers/DevTools/DevTools').default;
+  ReactDOM.render(
+    <Provider store={store} key="provider">
+      <div>
+        {component}
+        <DevTools />
+      </div>
+    </Provider>,
+    dest
+  );
+}
