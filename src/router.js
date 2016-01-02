@@ -1,6 +1,6 @@
 import React from 'react';
 import { Router, browserHistory } from 'react-router';
-import getRoutes from 'routes';
+import getRoutes from '../../src/routes';
 
 export default () => {
   return (
