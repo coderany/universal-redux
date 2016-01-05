@@ -81,7 +81,7 @@ module.exports = {
       loaders: [
         { test: /\.css$/, loader: 'style!css' },
         { test: /\.less$/, loader: 'style!css?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!autoprefixer?browsers=last 2 version!less?outputStyle=expanded&sourceMap' },
-        { test: /\.scss$/, loader: 'style!css?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap' }
+        { test: /\.scss$/, loader: 'style!css?modules&importLoaders=2&sourceMap&localIdentName=[local]!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap' }
       ]
     },
     plugins: [
@@ -108,13 +108,13 @@ module.exports = {
       loaders: [
         { test: /\.css$/, loader: ExtractTextPlugin.extract('style', 'css')},
         { test: /\.less$/, loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=2&sourceMap!autoprefixer?browsers=last 2 version!less?outputStyle=expanded&sourceMap=true&sourceMapContents=true') },
-        { test: /\.scss$/, loader: 'style!css?modules&importLoaders=2&sourceMap&localIdentName=[local]!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap' }
+        { test: /\.scss$/, loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=2&sourceMap!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap=true&sourceMapContents=true') }
       ]
     },
     plugins: [
       new CleanPlugin([relativeAssetsPath]),
 
-      // css files from the extract-text-plugin loa
+      // css files from the extract-text-plugin loader
       new ExtractTextPlugin('[name]-[chunkhash].css', {allChunks: true}),
       new webpack.DefinePlugin({
         __CLIENT__: true,
