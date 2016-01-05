@@ -114,7 +114,7 @@ module.exports = {
     plugins: [
       new CleanPlugin([relativeAssetsPath]),
 
-      // css files from the extract-text-plugin loader
+      // css files from the extract-text-plugin loa
       new ExtractTextPlugin('[name]-[chunkhash].css', {allChunks: true}),
       new webpack.DefinePlugin({
         __CLIENT__: true,
