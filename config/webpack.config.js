@@ -77,6 +77,23 @@ module.exports = {
       chunkFilename: '[name]-[chunkhash].js',
       publicPath: 'http://' + host + ':' + port + '/dist/'
     },
+    /*module: {
+     loaders: [
+     { test: /\.css$/, loader: 'style!css' },
+     { test: /\.less$/, loader: 'style!css?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!autoprefixer?browsers=last 2 version!less?outputStyle=expanded&sourceMap' },
+     { test: /\.scss$/, loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=2&sourceMap&localIdentName=[local]!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap') }
+     ]
+     },
+     plugins: [
+     // hot reload
+     new ExtractTextPlugin('[name]-[chunkhash].css', {allChunks: true}),
+     new webpack.HotModuleReplacementPlugin(),
+     new webpack.IgnorePlugin(/webpack-assets\.json$/),
+     new webpack.DefinePlugin({
+     __CLIENT__: true,
+     __SERVER__: false
+     })
+     ]*/
     module: {
       loaders: [
         { test: /\.css$/, loader: 'style!css' },
@@ -86,6 +103,36 @@ module.exports = {
     },
     plugins: [
       // hot reload
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.IgnorePlugin(/webpack-assets\.json$/),
+      new webpack.DefinePlugin({
+        __CLIENT__: true,
+        __SERVER__: false
+      })
+    ]
+  },
+  render: {
+    devtool: 'inline-source-map',
+    entry: {
+      'main': [
+        'webpack-hot-middleware/client?path=http://' + host + ':' + port + '/__webpack_hmr',
+      ]
+    },
+    output: {
+      filename: '[name]-[hash].js',
+      chunkFilename: '[name]-[chunkhash].js',
+      publicPath: 'http://' + host + ':' + port + '/dist/'
+    },
+    module: {
+      loaders: [
+        { test: /\.css$/, loader: 'style!css' },
+        { test: /\.less$/, loader: 'style!css?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!autoprefixer?browsers=last 2 version!less?outputStyle=expanded&sourceMap' },
+        { test: /\.scss$/, loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=2&sourceMap&localIdentName=[local]!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap') }
+      ]
+    },
+    plugins: [
+      // hot reload
+      new ExtractTextPlugin('[name]-[chunkhash].css', {allChunks: true}),
       new webpack.HotModuleReplacementPlugin(),
       new webpack.IgnorePlugin(/webpack-assets\.json$/),
       new webpack.DefinePlugin({
