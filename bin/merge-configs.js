@@ -9,6 +9,7 @@ const mergeBabel = require('./merge-babel-config');
 const baseWebpackConfig = require('../config/webpack.config.js');
 const baseDevConfig = mergeWebpack(baseWebpackConfig.common, baseWebpackConfig.development);
 const baseProdConfig = mergeWebpack(baseWebpackConfig.common, baseWebpackConfig.production);
+const baseRenderConfig = mergeWebpack(baseWebpackConfig.common, baseWebpackConfig.render);
 const baseToolsConfig = require('../config/webpack-isomorphic-tools-config');
 const WebpackErrorNotificationPlugin = require('webpack-error-notification');
 
@@ -19,7 +20,7 @@ const userConfigPath = 'config/universal-redux.config.js';
 const userConfig = require(path.resolve(userConfigPath));
 
 // merge with base config if directed to
-const baseConfig = isProduction ? baseProdConfig : baseDevConfig;
+const baseConfig = process.env.RENDER === '1' ? baseRenderConfig : baseDevConfig;
 const combinedWebpackConfig = userConfig.webpack.merge ? mergeWebpack(baseConfig, userConfig.webpack.config) : userConfig.webpack.config;
 
 // add babel for js transpiling
