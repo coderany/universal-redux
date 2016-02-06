@@ -119,7 +119,7 @@ module.exports = {
       ]
     },
     output: {
-      filename: '[name]-[hash].js',
+      filename: 'main.js',
       chunkFilename: '[name]-[chunkhash].js',
       publicPath: 'http://' + host + ':' + port + '/dist/'
     },
