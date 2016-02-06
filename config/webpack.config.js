@@ -119,7 +119,7 @@ module.exports = {
       ]
     },
     output: {
-      filename: 'main.js',
+      filename: '[name]-[hash].js',
       chunkFilename: '[name]-[chunkhash].js',
       publicPath: 'http://' + host + ':' + port + '/dist/'
     },
@@ -132,7 +132,7 @@ module.exports = {
     },
     plugins: [
       // hot reload
-      new ExtractTextPlugin('[name]-[chunkhash].css', {allChunks: true}),
+      new ExtractTextPlugin('index.css', {allChunks: true}),
       new webpack.HotModuleReplacementPlugin(),
       new webpack.IgnorePlugin(/webpack-assets\.json$/),
       new webpack.DefinePlugin({
